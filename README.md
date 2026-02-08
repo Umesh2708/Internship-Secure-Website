@@ -88,4 +88,6 @@ It helped in understanding real-world cloud infrastructure, security practices, 
 ---
 
 ## 👤 Author
-Intern – Cloud Computing  
+Umesh Saini  
+Cloud Computing Internship  
+2026

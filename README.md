@@ -89,5 +89,5 @@ It helped in understanding real-world cloud infrastructure, security practices, 
 
 ## 👤 Author
 Umesh Saini  
-Cloud Computing Internship  
+AWS Project
 2026

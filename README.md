@@ -36,15 +36,101 @@ User → Internet → Security Group (Firewall) → EC2 Instance → Web Applica
 
 ---
 
-## 🚀 Implementation Steps
-1. Created an AWS IAM user for secure access
-2. Launched a Free Tier EC2 instance
-3. Configured Security Groups to allow HTTP and restricted SSH access
-4. Installed and configured Apache web server
-5. Deployed a simple HTML web application
-6. Verified application accessibility using public IP
-7. Captured screenshots for documentation
-8. Terminated all AWS resources to avoid billing
+## 🚀 Implementation Steps (AWS EC2 + Apache Web Hosting)
+
+---
+
+### ✅ Step 1 (Optional): Create an AWS IAM User (For Secure Access)
+
+> This step is optional.  
+> If you want secure access and want to avoid using the root account, you can create an IAM user.  
+> Otherwise, you can directly continue to **Step 2**.
+
+1. Login to **AWS Management Console**
+2. Go to: **IAM → Users → Add users**
+3. Enter username (example: `ec2-admin-user`)
+4. Enable:
+   - ✅ AWS Management Console access
+5. Set permissions:
+   - Choose **Attach policies directly**
+   - Attach:
+     - ✅ `AdministratorAccess` (Full Admin Access)
+6. Create the user and save login details
+
+📌 After creating the IAM user, **logout from root** and login again using the IAM user you created.
+
+---
+
+### ✅ Step 2: Launch a Free Tier EC2 Instance
+
+1. Login using the **IAM user** (if created in Step 1)
+2. Go to: **EC2 → Instances → Launch Instance**
+3. Enter instance name:
+   - Example: `Apache-HTML-Server`
+4. Select AMI:
+   - ✅ Ubuntu (Recommended because it is user-friendly and commonly used)
+5. Choose Instance Type:
+   - ✅ `t2.micro` (Free Tier eligible)
+6. Create a Key Pair:
+   - Key pair name: `ec2-key`
+   - Download `.pem` file safely
+
+---
+
+### ✅ Step 3: Configure Security Group Rules
+
+Create a new security group and add these inbound rules:
+
+| Type | Protocol | Port | Source |
+|------|----------|------|--------|
+| SSH  | TCP      | 22   | My IP (recommended) |
+| HTTP | TCP      | 80   | Anywhere (0.0.0.0/0) |
+
+📌 SSH should be restricted to your IP for security.  
+HTTP should be public so the website can be accessed.
+
+---
+
+### ✅ Step 4: Run the EC2 Instance Setup Commands (Using Repo Script)
+
+Instead of manually running separate commands, you can directly use the setup script already provided in this GitHub repository.
+
+📌 The setup code is available inside the folder:
+
+```text
+ec2-setup/
+```
+This setup includes:
+
+- Apache installation
+
+- Starting and enabling the Apache service
+
+- Deploying the HTML project files
+
+- Required configuration for hosting the website
+
+Run the commands from the terminal after connecting to your EC2 instance, as mentioned inside the `ec2-setup` folder.
+
+---
+
+### ✅ Step 5: Terminate AWS Resources (To Avoid Billing)
+
+If you created this project only for learning/demo purpose, it is recommended to delete resources after testing to avoid billing.
+
+1. Go to: EC2 → Instances
+
+2. Select your instance
+
+3. Click: Instance state → Terminate instance
+
+4. Confirm termination
+
+Also check and delete (if created):
+
+  - Unused volumes
+
+  - Elastic IP (if allocated)
 
 ---
 
@@ -53,23 +139,6 @@ User → Internet → Security Group (Firewall) → EC2 Instance → Web Applica
 - SSH access restricted to specific IP
 - Only required ports (22, 80) opened
 - Basic monitoring enabled
-
----
-
-## 💰 Cost Management
-- AWS Free Tier services only
-- Resources deleted after testing
-- AWS budget alert configured
-- No billing generated
-
----
-
-## 📸 Screenshots
-Screenshots of the following are included:
-- EC2 instance running
-- Security group rules
-- Web application output in browser
-- IAM user details
 
 ---
 
